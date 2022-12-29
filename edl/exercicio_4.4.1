@@ -1,0 +1,5 @@
+data Arvore a = Galho (Arvore a) a (Arvore a) | Folha
+
+countFolhas Vazio = 0
+countFolhas (Branch _ Vazio Vazio) = 1
+countFolhas (Branch _ l r) = countFolhas l + countFolhas r

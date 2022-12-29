@@ -1,0 +1,12 @@
+data Lista a = No a (Lista a) | Vazio
+
+l = No 10 (No 20 (No 30 Vazio))
+
+f = fold (+) 0 l
+
+fold :: (a → b → b) → b → Lista a → b
+
+fold f l = 
+    case l of
+        Vazio -> Vazio
+        No x m -> No (f x) (fold f m)

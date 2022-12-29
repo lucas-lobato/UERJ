@@ -1,0 +1,11 @@
+data Guerreiro = Guerreiro String Int Int Int Int
+data Mago = Mago String Int Int Int Int
+data Sacerdote = Sacerdote String Int Int Int Int Int
+
+data Personagem = Guerreiro | Mago | Sacerdote
+
+mago :: Personagem
+mago = Mago "Lobato" 100 200 100 180
+
+sacerdote :: Personagem
+sacerdote = Sacerdote "Luana" 100 60 70 170 80

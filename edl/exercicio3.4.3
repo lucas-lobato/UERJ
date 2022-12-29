@@ -1,0 +1,15 @@
+-- dados é uma lista contendo uma lista com a montadora do carro, o modelo do carro e seu preço sugerido
+
+dados = [["Volkswagen","Gol","75830"],["Fiat","Strada","111500"],["Chevrolet","Onix","75000"],["Hyundai","HB20","77000"],["Fiat","Argo","77250"],["Chevrolet","Tracker","110000"],["Fiat","Pulse","98000"],["Nissan","Kicks","106000"],["Hyundai","Creta","106000"],["Volkswagen","Voyage","87730"],["Renault","Kwid","65000"],["Jeep","Compass","175000"],["Fiat","Toro","140000"],["Jeep","Renegade","10000"],["Toyota","Hilux","300000"],["Toyota","Corolla","150000"],["Fiat","Cronos","82000"],["Fiat","Mobi","66000"],["Peugeot","208","88000"],["Honda","City","113000"]]
+
+--a. Retorna uma lista com os modelos dos carros e seu preço sugerido
+mapDados x = tail x
+dados2 = map mapDados dados
+main = print dados2
+
+--b. Retorna todos os modelos da montadora "Fiat"
+cabeca x = head x == "Fiat"
+dados2 = filter cabeca dados
+main = print dados2
+
+--c.

@@ -1,0 +1,21 @@
+import Data.List
+
+type Aluno = (String, Int, Int)
+alunos :: [Aluno]
+alunos = [ ("Lucas Lobato", 10, 10),
+    ("Luana Aguiar", 9, 9),
+    ("Gabriel Mendes", 8, 8),
+    ("Rosa Maria", 9, 8),
+    ("Daniel Cruz", 7, 2),
+    ("Renan Sa", 10, 9),
+    ("Livia Maria", 5, 3),
+    ("Matheus Belato", 6, 4),
+    ("Jade Mendes", 10, 8),
+    ("Giovanna Fazol", 8, 7) ]
+
+f :: (String, Int, Int) -> (String,Int)
+f (n,p1,p2) = (n, (div (p1 + p2) 2))
+
+lista = map f alunos
+lista2 = filter ((>7).snd) lista
+main = print lista2

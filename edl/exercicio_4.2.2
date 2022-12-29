@@ -1,0 +1,20 @@
+data Arvore a = Galho (Arvore a) a (Arvore a) | Folha
+
+arvoreBBool :: Arvore Bool
+arvoreBBool = Galho (Galho (Galho Folha True Folha) 
+                            True
+                           (Galho True Folha))
+                    True
+                    (Galho (Galho Folha False Folha)
+                            False
+                            (Galho Folha False Folha))
+
+
+arvoreLInt :: Arvore List
+arvoreLInt = Galho (Galho (Galho Folha [1,2.3] Folha) 
+                            [1,2.3]
+                           (Galho [1,2.3] Folha))
+                    [1,2.3]
+                    (Galho (Galho Folha [4,5,6] Folha)
+                            [4,5,6]
+                            (Galho Folha [4,5,6] Folha))

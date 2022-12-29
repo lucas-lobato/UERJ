@@ -1,0 +1,12 @@
+import Data.List
+
+bandas :: [[String]]
+bandas = [ ["Gilberto Gil"],
+    ["Victor","Leo"],
+    ["Gonzagao"],
+    ["Claudinho","Bochecha"] ]
+
+f :: [String] -> String
+f [nome1, nome2] = nome1 ++ ", " ++ nome2
+
+main = print (map f bandas)

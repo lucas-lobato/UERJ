@@ -1,0 +1,5 @@
+data ListInt = No Int ListaInt | Vazio
+data Lista a = No a (Lista a) | Vazio
+
+l :: Lista ListaInt
+l = No [No 10 (No 20 (No 30 Vazio))] (No [No 10 (No 20 (No 30 Vazio))])

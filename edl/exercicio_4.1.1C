@@ -1,0 +1,36 @@
+enum PERSONAGEM {Guerreiro, Mago, Sacerdote};
+struct Personagem
+{
+    enum PERSONAGEM sub;
+    union
+    {
+        struct Guerreiro{
+            char nome;
+            int vida;
+            int forca;
+            int inteligencia;
+            int altura;
+        };
+
+        struct Mago{
+            char nome;
+            int vida;
+            int mana;
+            int inteligencia;
+            int altura;
+        };
+
+        struct Sacerdote{
+            char nome;
+            int vida;
+            int mana;
+            int inteligencia;
+            int altura;
+            int fe;
+        };
+    };
+    
+};
+
+struct Personagem lobato = {Mago, {'lobato', 100, 200, 100, 180}};
+struct Personagem luana = {Sacerdote, {'luana', 100, 60, 70, 170, 80}};

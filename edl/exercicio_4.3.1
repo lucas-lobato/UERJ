@@ -1,0 +1,22 @@
+data Arvore a = Galho (Arvore a) a (Arvore a) 
+              | Folha
+  deriving Show
+
+arvore :: Arvore Int
+arvore = Galho (Galho (Galho Folha 1 Folha)
+                      2
+                      (Galho Folha 3 Folha))
+                4
+                (Galho (Galho Folha 5 Folha)
+                       6
+                       (Galho Folha 7 Folha))
+
+mapA :: (a -> b) -> Arvore a -> Arvore b
+mapA f a =
+    case a of
+        Folha -> Folha
+        (Galho e _ d) x m -> Galho (f x) (mapA f m)
+
+arvore2 = mapA (*2) arvore
+main = print $ arvore2
+

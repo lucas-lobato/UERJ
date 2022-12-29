@@ -1,0 +1,19 @@
+import Data.List
+
+type Aluno = (String, Int, Int)
+alunos :: [Aluno]
+alunos = [ ("Lucas Lobato", 10, 10),
+    ("Luana Aguiar", 9, 9),
+    ("Gabriel Mendes", 8, 8),
+    ("Rosa Maria", 9, 8),
+    ("Daniel Cruz", 7, 7),
+    ("Renan Sa", 10, 9),
+    ("Livia Maria", 5, 8),
+    ("Matheus Belato", 6, 10),
+    ("Jade Mendes", 10, 8),
+    ("Giovanna Fazol", 8, 7) ]
+
+f :: (String, Int, Int) -> String
+f (n,p1,p2) = "Nome: " ++ n ++ " || Media: " ++ (show (div (p1 + p2) 2))
+
+main = putStr (intercalate "\n" (map f alunos))
