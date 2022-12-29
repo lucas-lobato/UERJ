@@ -1,0 +1,8 @@
+SELECT
+	"G4_Farmacia"."funcionario"."id" as "ID",
+	"G4_Farmacia"."funcionario"."nome" as "Funcionario",
+	"G4_Farmacia"."cargo"."remuneração" as "Salário",
+	SUM("G4_Farmacia"."cargo"."remuneração")
+	FROM "G4_Farmacia"."funcionario"
+	LEFT JOIN "G4_Farmacia"."cargo" ON "G4_Farmacia"."cargo"."id" = "G4_Farmacia"."funcionario"."id_cargo"
+	

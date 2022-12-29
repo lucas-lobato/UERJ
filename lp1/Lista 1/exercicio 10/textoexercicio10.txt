@@ -1,0 +1,7 @@
+Python e uma linguagem de programacao de alto nivel, interpretada, de script,
+imperativa, orientada a objetos, funcional, de tipagem dinamica e forte. Foi
+lancada por Guido van Rossum em 1991. Atualmente possui um modelo de
+desenvolvimento comunitario, aberto e gerenciado pela organizacao sem fins
+lucrativos Python Software Foundation. Apesar de varias partes da  linguagem
+possuirem padroes e especificacoes formais, a linguagem como um todo nao e
+formalmente especificada. O padrao de facto e a implementacao CPython.

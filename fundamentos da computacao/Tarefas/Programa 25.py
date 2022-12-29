@@ -1,0 +1,1 @@
+#criar uma lista com os valores maiores que a media, valores dados pelo usuario, serao 5 dados
