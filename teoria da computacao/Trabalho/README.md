@@ -1,4 +1,7 @@
-Here is a simple flow chart:
+
+
+
+Diagrama de estados dos operadores lógicos:
 
 ```mermaid
 graph LR
