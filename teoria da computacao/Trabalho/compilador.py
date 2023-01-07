@@ -22,10 +22,8 @@ GE = 267
 class token:
     def __init__(self, nome_token, atributo):
         self.nome_token = nome_token
-        self.atributo = atributo
+        self.atributo = atributo        
         
-        
-
 
 estado = 0
 partida = 0
@@ -47,7 +45,6 @@ def readFile(fileName):
         code = code + char
     print(code)
     return code
-
 
 
 def falhar():
