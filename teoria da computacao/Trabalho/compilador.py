@@ -163,7 +163,7 @@ def proximo_token():
 
     if estado == 9:
         c = code[cont_sim_lido]
-        if((c == ' ') or (c == '\n')):
+        if (c == ' ') or (c == '\n'):
             estado = 0
             cont_sim_lido += 1
       
@@ -175,7 +175,7 @@ def proximo_token():
 
     if estado == 12:
         c = code[cont_sim_lido]
-        if((c == ' ') or (c == '\n')):
+        if (c == ' ') or (c == '\n'):
             estado = 0
             cont_sim_lido+= 1
         else:
@@ -186,7 +186,7 @@ def proximo_token():
 
     if estado == 20:
         c = code[cont_sim_lido]
-        if((c == ' ') or (c == '\n')):
+        if (c == ' ') or (c == '\n'):
             estado = 0
             cont_sim_lido+= 1
         else:
@@ -197,7 +197,7 @@ def proximo_token():
 
     if estado == 25:
         c = code[cont_sim_lido]
-        if((c == ' ') or (c == '\n')):
+        if (c == ' ') or (c == '\n'):
             estado = 0
             cont_sim_lido+= 1
         else:
