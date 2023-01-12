@@ -48,6 +48,7 @@ def readFile(fileName):
 
 
 def falhar():
+    partida = 0
     if estado == 0:
         partida = 9
   
@@ -69,8 +70,9 @@ def falhar():
     return partida
 
 
-def proximo_token():
-
+def proximo_token(code):
+    cont_sim_lido = 0
+    estado = 0
     Token = token(None,None)
     while code[cont_sim_lido] != EOFError:
         if estado == 0:
@@ -214,8 +216,8 @@ def proximo_token():
 
 
 def main():
-  code = readFile("programa.txt")
-  token = proximo_token()
+    code = readFile("programa.txt")
+    token = proximo_token(code)
   #...
 
 main()
