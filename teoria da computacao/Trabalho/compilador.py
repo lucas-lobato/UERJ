@@ -4,7 +4,7 @@
 
 #NOME TOKENS
 ASSIGNMENT = 254
-OPARI = 255
+OPARIT = 255
 IF = 256
 THEN = 257
 ELSE = 258
@@ -23,6 +23,11 @@ PLUS = 268 # +
 MINUS = 269 # -
 DIV = 270 # /
 TIMES = 271 # *
+PARENTHESES_L = 272 # (
+PARENTHESES_R = 273 # )
+DOT = 274 # .
+SEMICOLON = 275 # ;
+COMMA = 276 # ,
 
 class token:
     def __init__(self, nome_token, atributo):
@@ -66,7 +71,6 @@ def falhar():
         partida = 26
 
     if estado == 26:
-		#retornar msg de erro
         print("Erro encontrado no código\n")
         cont_sim_lido += 1
     print("Erro do compilador")
@@ -166,101 +170,159 @@ def proximo_token(code):
             else:
                 estado = 26
 
-    if estado == 8:
-        cont_sim_lido+= 1
-        print("<relop, GE>\n")
-        Token.nome_token = RELOP
-        Token.atributo = GE
-        estado = 0
-        return Token
-        
-
-    if estado == 9:
-        cont_sim_lido+= 1
-        print("<relop, GT>\n")
-        Token.nome_token = RELOP
-        Token.atributo = GT
-        estado = 0
-        return Token
-    
-    if estado == 10:
-        c = code[cont_sim_lido]
-        if (c == ' ') or (c == '\n'):
-            estado = 0
-            cont_sim_lido += 1
-        else:
-            #implementar ações referentes aos estado */
-            estado = falhar()
-
-      #implementar ações para os estados 11, 12, 13*/
-
-    if estado == 13:
-        c = code[cont_sim_lido]
-        if (c == ' ') or (c == '\n'):
-            estado = 0
+        if estado == 8:
             cont_sim_lido+= 1
-        else:
-            #implementar ações referentes aos estado */
-            estado = falhar()
-
-        #implementar ações para os estados 13-19*/
-
-    if estado == 21:
-        c = code[cont_sim_lido]
-        if (c == ' ') or (c == '\n'):
+            print("<relop, GE>\n")
+            Token.nome_token = RELOP
+            Token.atributo = GE
             estado = 0
-            cont_sim_lido+= 1
-        elif(c == '+'):
-            estado = 22
-        elif(c == '-'):
-            estado = 23
-        elif(c =='*'):
-            estado = 24
-        elif(c == 'div'):
-            estado = 25
-        else:
-            estado = falhar()
-
-    if estado == 22:
-        cont_sim_lido += 1
-        print("<opari, +>\n")
-        Token.nome_token = OPARI
-        Token.atributo = PLUS
-        estado = 0
-        return Token
-    if estado == 23:
-        cont_sim_lido += 1
-        print("<opari, ->\n")
-        Token.nome_token = OPARI
-        Token.atributo = MINUS
-        estado = 0
-        return Token
-    if estado == 24:
-        cont_sim_lido += 1
-        print("<opari, *>\n")
-        Token.nome_token = OPARI
-        Token.atributo = TIMES
-        estado = 0
-        return Token
-    if estado == 25:
-        cont_sim_lido += 1
-        print("<opari, div>\n")
-        Token.nome_token = OPARI
-        Token.atributo = DIV
-        estado = 0
-        return Token
-    if estado == 26:
-        c = code[cont_sim_lido]
-        if (c == ' ') or (c == '\n'):
-            estado = 0
-            cont_sim_lido+= 1
-        else:
-        
-            #implementar ações referentes aos estado */
-            estado = falhar()
-            Token.nome_token = -1
-            Token.atributo = -1
             return Token
+            
+
+        if estado == 9:
+            cont_sim_lido+= 1
+            print("<relop, GT>\n")
+            Token.nome_token = RELOP
+            Token.atributo = GT
+            estado = 0
+            return Token
+        
+        if estado == 10:
+            c = code[cont_sim_lido]
+            if (c == ' ') or (c == '\n'):
+                estado = 0
+                cont_sim_lido += 1
+            else:
+                if c == '(':
+                    estado = 11
+                elif c == ')':
+                    estado = 12
+                else:
+                    estado = falhar()
+
+        if estado == 11:
+            cont_sim_lido+= 1
+            print("<(, >\n")
+            Token.nome_token = RELOP
+            Token.atributo = PARENTHESES_L
+            estado = 0
+            return Token
+        
+        if estado == 12:
+            cont_sim_lido+= 1
+            print("<), >\n")
+            Token.nome_token = RELOP
+            Token.atributo = PARENTHESES_R
+            estado = 0
+            return Token
+        
+        if estado == 13:
+            c = code[cont_sim_lido]
+            if (c == ' ') or (c == '\n'):
+                estado = 0
+                cont_sim_lido+= 1
+            else:
+                if c == '.':
+                    estado = 14
+                elif c == ';':
+                    estado = 15
+                elif c == ',':
+                    estado = 16
+                else:
+                    estado = falhar()
+
+        if estado == 14:
+            cont_sim_lido+= 1
+            print("<., >\n")
+            Token.nome_token = RELOP
+            Token.atributo = DOT
+            estado = 0
+            return Token
+        
+        if estado == 15:
+            cont_sim_lido+= 1
+            print("<;, >\n")
+            Token.nome_token = RELOP
+            Token.atributo = SEMICOLON
+            estado = 0
+            return Token
+        
+        if estado == 16:
+            cont_sim_lido+= 1
+            print("<,>\n")
+            Token.nome_token = RELOP
+            Token.atributo = COMMA
+            estado = 0
+            return Token
+        
+        if estado == 17:
+            pass 
+        
+        if estado == 18:
+            pass
+        
+        if estado == 19:
+            pass
+        
+        if estado == 20:
+            pass
+
+        if estado == 21:
+            c = code[cont_sim_lido]
+            if (c == ' ') or (c == '\n'):
+                estado = 0
+                cont_sim_lido+= 1
+            elif(c == '+'):
+                estado = 22
+            elif(c == '-'):
+                estado = 23
+            elif(c =='*'):
+                estado = 24
+            elif(c == 'div'):
+                estado = 25
+            else:
+                estado = falhar()
+
+        if estado == 22:
+            cont_sim_lido += 1
+            print("<oparit, +>\n")
+            Token.nome_token = OPARIT
+            Token.atributo = PLUS
+            estado = 0
+            return Token
+        if estado == 23:
+            cont_sim_lido += 1
+            print("<oparit, ->\n")
+            Token.nome_token = OPARIT
+            Token.atributo = MINUS
+            estado = 0
+            return Token
+        if estado == 24:
+            cont_sim_lido += 1
+            print("<oparit, *>\n")
+            Token.nome_token = OPARIT
+            Token.atributo = TIMES
+            estado = 0
+            return Token
+        if estado == 25:
+            cont_sim_lido += 1
+            print("<oparit, div>\n")
+            Token.nome_token = OPARIT
+            Token.atributo = DIV
+            estado = 0
+            return Token
+        if estado == 26:
+            c = code[cont_sim_lido]
+            if (c == ' ') or (c == '\n'):
+                estado = 0
+                cont_sim_lido+= 1
+            else:
+            
+                #implementar ações referentes aos estado */
+                estado = falhar()
+                Token.nome_token = -1
+                Token.atributo = -1
+                return Token
     
     Token.nome_token = EOFError
     Token.atributo = -1
