@@ -497,7 +497,7 @@ def proximo_token(code, partida):
             cont_sim_lido+= 1
             c = code[cont_sim_lido]
             if c == 'a':
-                estado = 5
+                estado = 45
             else:
                 estado = 41
         
