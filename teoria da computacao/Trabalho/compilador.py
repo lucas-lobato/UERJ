@@ -365,13 +365,15 @@ def proximo_token(code, partida):
         
         if estado == 28:
             cont_sim_lido+= 1
-            if code[cont_sim_lido] == ' ':
+            c = code[cont_sim_lido]
+            if c == ' ' or c == '\n':
                 print("<begin, >")
                 Token.nome_token = RELOP
                 Token.atributo = BEGIN
                 estado = 0
             else:
-                estado = 0
+                cont_sim_lido = cont_sim_lido - 1
+                estado = 62
         
         if estado == 29:
             cont_sim_lido+= 1
@@ -687,7 +689,7 @@ def proximo_token(code, partida):
                 cont_sim_lido+= 1
                 estado = 62
             elif c == ' ' or c == '\n' or c == ';' or c == ',' or c == ':' or c == '<' or c == '>' or c == '=':
-                print('<id, ', nome_prog,'>')
+                print('<id,', nome_prog,'>')
                 estado = 0
                 nome_prog = ''
             else:
