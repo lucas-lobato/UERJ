@@ -4,7 +4,7 @@ int a, b;
 begin
     a:=-2;
     b:=10
-        
+
     begin
         if (a<1) then
             b:=1
