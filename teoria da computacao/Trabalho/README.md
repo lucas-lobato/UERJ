@@ -3,9 +3,9 @@
     ``` 
         letra = [a-zA-z]
         palavra = letra | letra?
-        dig = [0-9]
-        numero = dig | dig?
-        identificador = letra | (letra|dig)?
+        digito = [0-9]
+        numero = digito | digito?
+        identificador = letra | (letra|digito)?
         log = {<,>,=}
         oplogic = log | log?
         simbolo = {+,-,*,div}
@@ -58,7 +58,7 @@ stateDiagram-v2
         estado = 0
     end note
 ```
-## Digrama de estado do paranteses
+## digitorama de estado do paranteses
 ```mermaid
 stateDiagram-v2
 direction LR
@@ -118,8 +118,8 @@ note right of 28
 retorna <"begin", >
     estado = 0
 end note
-13 --> 31: digito
-31 --> 31: digito
+13 --> 31: digitoito
+31 --> 31: digitoito
 note right of 31
 retorna <'num", numero>
     estado = 0
@@ -187,4 +187,43 @@ note right of 61
 end note
 
 ```
+## Diagram de operadores aritmeticos
+```mermaid
+stateDiagram-v2
+direction LR
 
+[*] --> 36
+36 --> 37: +
+note right of 37
+retorna <oparit, +>
+    estado = 0
+end note
+36 --> 38: -
+note right of 38
+retorna <oparit, ->
+    estado = 0
+end note
+36 --> 39: *
+note right of 39
+retorna <oparit, *>
+    estado = 0
+end note
+36 --> 40: d
+note right of 40
+    estado = 0
+end note
+
+```
+## Diagram de identificador
+
+```mermaid
+stateDiagram-v2
+direction LR
+
+[*] --> 62: letra
+62 --> 62: letra U digitoito
+note right of 62
+    retorna <'id', identificador>
+    estado = 0
+end note
+```
