@@ -106,7 +106,7 @@ def proximo_token(code, partida):
             elif(c == ':'):
                 estado = 7
             else: 
-                estado = falhar(0)
+                estado = falhar(estado)
 
         if estado == 1:
             cont_sim_lido += 1
@@ -192,7 +192,7 @@ def proximo_token(code, partida):
                 elif c == ')':
                     estado = 12
                 else:
-                    estado = falhar(10)
+                    estado = falhar(estado)
 
         if estado == 11:
             cont_sim_lido+= 1
@@ -239,7 +239,7 @@ def proximo_token(code, partida):
                 elif c == 'd': # checando se sera escrito 'do' ou 'div'
                     estado = 35
                 else:
-                    estado = falhar(13)
+                    estado = falhar(estado)
 
         if estado == 14:
             cont_sim_lido+= 1
@@ -374,20 +374,6 @@ def proximo_token(code, partida):
             else:
                 cont_sim_lido = cont_sim_lido - 1
                 estado = 62
-        
-        if estado == 29:
-            cont_sim_lido+= 1
-            print("<num, >")
-            Token.nome_token = RELOP
-            Token.atributo = NUM
-            estado = 0
-            
-        if estado == 30:
-            cont_sim_lido+= 1
-            print("<if, >")
-            Token.nome_token = RELOP
-            Token.atributo = IF
-            estado = 0
 
         if estado == 31:
             nome_num = nome_num + code[cont_sim_lido]
@@ -496,18 +482,6 @@ def proximo_token(code, partida):
                 estado = falhar(estado)
                 Token.nome_token = -1
                 Token.atributo = -1
-
-        if estado == 42:
-            cont_sim_lido += 1
-            c = code[cont_sim_lido]
-            if (c == ' ') or (c == '\n'):
-                estado = 0
-                cont_sim_lido+= 1
-            else:
-                estado = falhar(41)
-                Token.nome_token = -1
-                Token.atributo = -1
-                return Token
         
         if estado == 43:
             cont_sim_lido+= 1
