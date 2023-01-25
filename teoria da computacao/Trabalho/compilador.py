@@ -467,14 +467,10 @@ def proximo_token(code, partida):
         
         if estado == 40:
             cont_sim_lido += 1
-            if code[cont_sim_lido] == 'i':
+            if code[cont_sim_lido] == 'v':
                 cont_sim_lido += 1
-                if code[cont_sim_lido] == 'd':
-                    cont_sim_lido += 1
-                    if code[cont_sim_lido] == ' ':
-                        print("<oparit, div>")
-                    else:
-                        estado = 62
+                if code[cont_sim_lido] == ' ':
+                    print("<oparit, div>")
                 else:
                     estado = 62
             else:
