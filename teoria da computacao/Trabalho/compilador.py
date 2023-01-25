@@ -236,7 +236,7 @@ def proximo_token(code, partida):
                     estado = 53
                 elif c == 'w': # cheacando se sera escrito 'while'
                     estado = 57
-                elif c == 'd': # checando se sera escrito 'do' ou 'div'
+                elif c == 'd': # checando se sera escrito 'do'
                     estado = 35
                 else:
                     estado = falhar(estado)
@@ -422,11 +422,9 @@ def proximo_token(code, partida):
             c = code[cont_sim_lido]
             if c == 'o':
                 estado = 43
-            elif c == 'i':
-                estado = 40
             else:
                 cont_sim_lido = cont_sim_lido - 1
-                estado = 62
+                estado = 40
             
         if estado == 36:
             c = code[cont_sim_lido]
@@ -467,13 +465,20 @@ def proximo_token(code, partida):
         
         if estado == 40:
             cont_sim_lido += 1
-            if code[cont_sim_lido] == 'v':
+            if code[cont_sim_lido] == 'i':
                 cont_sim_lido += 1
-                if code[cont_sim_lido] == ' ':
-                    print("<oparit, div>")
+                if code[cont_sim_lido] == 'v':
+                    cont_sim_lido += 1
+                    if code[cont_sim_lido] == ' ':
+                        print("<oparit, div>")
+                    else:
+                        cont_sim_lido = cont_sim_lido - 3
+                        estado = 62
                 else:
+                    cont_sim_lido = cont_sim_lido - 2
                     estado = 62
             else:
+                cont_sim_lido = cont_sim_lido - 1
                 estado = 62
             Token.nome_token = OPARIT
             Token.atributo = DIV
