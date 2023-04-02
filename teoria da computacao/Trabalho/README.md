@@ -118,8 +118,8 @@ note right of 28
 retorna <"begin", >
     estado = 0
 end note
-13 --> 31: digitoito
-31 --> 31: digitoito
+13 --> 31: digito
+31 --> 31: digito
 note right of 31
 retorna <'num", numero>
     estado = 0
@@ -221,7 +221,7 @@ stateDiagram-v2
 direction LR
 
 [*] --> 62: letra
-62 --> 62: letra U digitoito
+62 --> 62: letra U digito
 note right of 62
     retorna <'id', identificador>
     estado = 0
