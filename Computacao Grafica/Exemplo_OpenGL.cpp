@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <windows.h>
 #include <GL/glut.h>
 
 GLint WINDOW_WIDTH  = 500,
