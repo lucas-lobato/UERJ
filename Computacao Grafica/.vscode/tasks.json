@@ -12,8 +12,8 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "-g",
                 "${file}",
-                "-I\"C:\\MinGW\\freeglut\\include\"",
-                "-L\"C:\\MinGW\\freeglut\\lib\\x64\"",
+                "-I\"C:\\C:\\TDM-GCC-64\\freeglut\\include\"",
+                "-L\"C:\\C:\\TDM-GCC-64\\freeglut\\lib\\x64\"",
                 "-lfreeglut",
                 "-lopengl32",
                 "-lglu32"
