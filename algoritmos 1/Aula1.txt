@@ -1,0 +1,9 @@
+﻿Algoritmos	e Estruturas de dados 1
+
+
+	Dados um vetor A com N inteiros não negativos e um inteiro k, elaborar um algoritmo que decide se ha dois elementos de A [1..N], cuja soma seja K.
+
+	A= [3  1  2  10  9  5]
+	N=6 (numero de elementos do vetor)
+	K=11 (resultado da soma dos pares desejada)
+	R:v (A[2] + A [4] = 11)

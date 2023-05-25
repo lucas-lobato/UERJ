@@ -1,0 +1,1 @@
+dbinom(2,10,0.02,log=False)
