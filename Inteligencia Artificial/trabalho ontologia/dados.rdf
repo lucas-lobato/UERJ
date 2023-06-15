@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi/"
+     xml:base="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:conselhoJedi="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#governa -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#governa">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#governadoPor"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ConselhoJedi"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#governadoPor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#governadoPor">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ConselhoJedi"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#treina -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#treina">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#treinadoPor"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Padawan"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#treinadoPor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#treinadoPor">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Padawan"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ConselhoJedi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ConselhoJedi">
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Jedi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Jedi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Jedi"/>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Jedi"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Padawan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Padawan -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Padawan">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Jedi"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AltoConselhoJedi -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AltoConselhoJedi">
+        <rdf:type rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ConselhoJedi"/>
+        <conselhoJedi:governadoPor rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MaceWindu"/>
+        <conselhoJedi:governadoPor rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ObiWanKenobi"/>
+        <conselhoJedi:governadoPor rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Yoda"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AnakinSkywalker -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AnakinSkywalker">
+        <rdf:type rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Padawan"/>
+        <conselhoJedi:treinadoPor rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ObiWanKenobi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MaceWindu -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MaceWindu">
+        <rdf:type rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi"/>
+        <conselhoJedi:governa rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AltoConselhoJedi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ObiWanKenobi -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ObiWanKenobi">
+        <rdf:type rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi"/>
+        <conselhoJedi:governa rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AltoConselhoJedi"/>
+        <conselhoJedi:treina rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AnakinSkywalker"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Yoda -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Yoda">
+        <rdf:type rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MestreJedi"/>
+        <conselhoJedi:governa rdf:resource="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AltoConselhoJedi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#AnakinSkywalker"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#MaceWindu"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#ObiWanKenobi"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/neolu/ontologies/2023/5/conselhoJedi#Yoda"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+
