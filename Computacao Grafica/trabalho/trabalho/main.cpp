@@ -1,103 +1,185 @@
-#include <GL/glut.h>
-#include <math.h>
-#include <windows.h>
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <random>
-#include "Cenario.hpp"
-#include "Personagem.hpp"
+#define STB_IMAGE_IMPLEMENTATION
+#include "Jogo.hpp"
+#include "SkyBox.hpp"
 
-Cenario cenario_main;
-Personagem personagem;
 
 using namespace std;
 
-void init(void);
-void display(void);
+Jogo jogo;
+SkyBox skybox;
 
 
 void init(void) {
     glClearColor(0.8, 0.9, 1, 1.0);
     glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+    gluPerspective(90, 2, 0.1, 15);
+    glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glOrtho(-1, 1, -1, 1, -1, 1);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_GEN_S);
+    glEnable(GL_TEXTURE_GEN_T);
+    //skybox.loadSkyboxTextures();
+}
+
+// atualiza o frame
+void refresh() {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(90, 2, 0.1, 15);
+
 }
 
 
+// redimensiona a tela
+void reshape(int w, int h) {
+    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+    refresh();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glutPostRedisplay();
+}
+
+// display
 void display() {
-    glClear(GL_COLOR_BUFFER_BIT);
-    if (personagem.contador == 350) {
-        cenario_main.scene1Replay = cenario_main.scene1Replay + 4;
+
+    // termina o jogo o jogo
+    if (jogo.gameOver) {
+        system("pause");
+        exit(0);
     }
 
-    if (personagem.contador == 550) {
-        cenario_main.scene2Replay = cenario_main.scene2Replay + 4;
-        personagem.contador = 150;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    refresh();
+    gluLookAt(0.1 + jogo.characterPosX, 0.1, 1, 0 + jogo.characterPosX, 0, 0, 0, 1, 0);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    
+    glPushMatrix();
+    jogo.drawCenario();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef((GLfloat)jogo.characterPosX, 0, (GLfloat)jogo.characterPosZ);
+    glTranslatef(-0.9, -0.5, 0);
+    glRotatef(jogo.zRotation,0,1,0);
+    glScalef(0.05, 0.05, 0.05);
+    jogo.drawCharacter();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(6 + jogo.missilMovement, -0.55, 0);
+    jogo.drawMissile();
+    glPopMatrix();
+
+    glPushMatrix();
+    jogo.colisionCoinCheck();
+    jogo.drawCoins();
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-3.5 + jogo.characterPosX,0.2,0);
+    jogo.drawScore();
+    glPopMatrix();
+
+    glPushMatrix();
+    //skybox.drawSkybox();
+    glPopMatrix();
+
+    // verifica se o jogador perdeu
+    if (jogo.colisionMissileCheck()) {
+        glPushMatrix();
+        glTranslatef(0.5 + jogo.characterPosX,-1,0);
+        jogo.drawGameOverScreen();
+        glPopMatrix();
+        jogo.gameOver = true;
     }
 
-    glPushMatrix();
-    cenario_main.drawbackground();
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(0.3, 0.25, 0);
-    glScalef(0.75, 0.95, 0.0);
-    cenario_main.drawSun();
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef((GLfloat)cenario_main.scene1Replay, 0, 0);
-    glTranslatef((GLfloat)cenario_main.displayMovement, 0, 0);
-    cenario_main.drawScene();
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef(2, 0, 0);
-    glTranslatef((GLfloat)cenario_main.scene2Replay, 0, 0);
-    glTranslatef((GLfloat)cenario_main.displayMovement, 0, 0);
-    cenario_main.drawScene();
-    glPopMatrix();
-
-    glPushMatrix();
-    glTranslatef((GLfloat)personagem.characterPosX, (GLfloat)personagem.characterPosY, 0);
-    glTranslatef(-0.9, -0.85, 0);
-    glScalef(0.5, 0.5, 0);
-    personagem.drawCharacter();
-    glPopMatrix();
-
-    Sleep(10);
     glFlush();
 }
 
-
+// Pega a açao do teclado
 void keyboard(unsigned char key, int x, int y) {
     switch (key) {
     case 'd':
-        personagem.characterMovement(0.01);
+        if (jogo.colisionBoxCheckD()) {
+            jogo.characterMovementX(0.01);
+            jogo.update();
+            jogo.zRotation = 90;
+            glutPostRedisplay();
+        }
         break;
     case 'a':
-        personagem.characterMovement(-0.01);
+        if (jogo.colisionBoxCheckA()) {
+            jogo.characterMovementX(-0.01);
+            jogo.update();
+            jogo.zRotation = 90;
+            glutPostRedisplay();
+        }
         break;
-    case ' ':
-        personagem.jumping();
-        display();
+    case 'w':
+        if (jogo.colisionBoxCheckW()) {
+            jogo.characterMovementZ(-0.01);
+            jogo.update();
+            jogo.zRotation = 180;
+            glutPostRedisplay();
+        }
+        break;
+    case 's':
+        if (jogo.colisionBoxCheckS()) {
+            jogo.characterMovementZ(0.01);
+            jogo.update();
+            glutPostRedisplay();
+            jogo.zRotation = 180;
+        }
         break;
     default:
         break;
     }
 }
 
+// Atualiza a posição das nuvens com o passar do tempo
+void updateClouds(int value) {
+    jogo.cloudMovement = jogo.cloudMovement - 0.005;
+    if (jogo.cloudMovement < -2) {
+        jogo.cloudMovement = 0;
+    }
+    glutPostRedisplay();
+    glutTimerFunc(120, updateClouds, 0);
+}
 
+// Atualiza a posição do missil com o passar do tempo
+void updateMissil(int value) {
+    jogo.missilMovement = jogo.missilMovement - 0.01;
+    jogo.missilLocation = jogo.missilLocation + 0.01;
+    if (jogo.missilLocation < 9.01 && jogo.missilLocation > 8.99) {
+        jogo.missilLocation = 0;
+    }
+    if (jogo.missilMovement < -9) {
+        jogo.missilMovement = 0;
+    }
+    glutPostRedisplay();
+    glutTimerFunc(30, updateMissil, 0);
+}
+
+// main
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(1000, 500);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(jogo.width, jogo.height);
     glutInitWindowPosition(300, 100);
-    glutCreateWindow("TRABALHO");
+    glutCreateWindow("ATAQUE DO MISSIL");
     init();
     glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
     glutKeyboardFunc(keyboard);
+    glutTimerFunc(0, updateClouds, 0);
+    glutTimerFunc(0, updateMissil, 0);
     glutMainLoop();
     return 0;
 }

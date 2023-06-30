@@ -11,9 +11,10 @@
 class Primitivas
 {
 public:
-	void drawTriangle();
-	void drawPolygon();
-	void drawSquare();
-	void drawDisk(double radius);
+	void drawSfere(void);
+	void drawCube(void);
+	void drawCone(void);
+	void drawCilinder(void);
+	void drawTorus(void);
 };
 

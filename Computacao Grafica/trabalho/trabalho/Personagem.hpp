@@ -1,22 +1,28 @@
 #pragma once
-#include <GL/glut.h>
-#include <math.h>
-#include <windows.h>
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <random>
+#include "Cenario.hpp"
 
-class Personagem
+class Personagem: public Cenario
 {
 public:
-	float characterPosX = 0, characterPosY = 0;
-	float cloudMove = 0;
-	int rightArm = 0, leftArm = 0, leftLeg = 0, rightLeg = 0;
-	int contador = 0;
+	float characterPosX = 0, characterPosZ = 0;
+
+	int contadorX = 0;
+	int contadorZ = 0;
+	float zRotation = 90;
+
+	float angleLeftLeg = 0.0;
+	float angleRightLeg = 0.0;
+	float angleLeftArm = 0.0;
+	float angleRightArm = 0.0;
+	bool leftLegDescendo = false;
+	bool rightLegDescendo = true;
+	bool leftArmDescendo = false;
+	bool rightArmDescendo = true;
+
 public:
-	void characterMovement(float);
+	void update();
+	void characterMovementX(float);
+	void characterMovementZ(float);
 	void drawCharacter(void);
-	void jumping(void);
 };
 
