@@ -77,7 +77,7 @@ def falhar(estado):
         partida = 62
     
     if estado == 100:
-        print("Erro encontrado no código")
+        print("Erro encontrado no codigo")
         print("Erro do compilador")
         exit()
 
