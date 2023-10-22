@@ -1,0 +1,3 @@
+﻿  AnalisadorLexico.cpp
+C:\Users\neolu\OneDrive\Área de Trabalho\Lucas\UERJ\Compiladores\AnalisadorLexico\AnalisadorLexico.cpp(1293): warning C4715: 'proximo_token': nem todos os caminhos de controle retornam um valor
+  AnalisadorLexico.vcxproj -> C:\Users\neolu\OneDrive\Área de Trabalho\Lucas\UERJ\Compiladores\AnalisadorLexico\x64\Debug\AnalisadorLexico.exe
